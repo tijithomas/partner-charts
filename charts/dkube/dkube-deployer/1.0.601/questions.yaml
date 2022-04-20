@@ -1,0 +1,252 @@
+questions:
+- variable: eula
+  default: false
+  description: "www.oneconvergence.com/EULA/One-Convergence-EULA.pdf . By accepting this license agreement you acknowledge that you have read and understood the terms and conditions mentioned."
+  type: boolean
+  label: DKUBE-EULA
+  required: true
+  group: "Dkube"
+- variable: required.kube_provider
+  default: ""
+  description: "Kubernetes provider: Choose one of dkube/gke/okd/eks/ntnx"
+  type: enum
+  label: Kube Provider
+  required: true
+  options:
+    - "dkube"
+    - "gke"
+    - "okd"
+    - "eks"
+    - "ntnx"
+  group: "Dkube"
+  show_if: "eula=true"
+- variable: required.ha
+  default: false
+  description: "When HA=true k8s cluster must have min 3 schedulable nodes"
+  type: boolean
+  label: HA
+  required: true
+  group: "Dkube"
+  show_if: "eula=true"
+- variable: required.username
+  default: ""
+  description: "Dkube operator's local sigh-in username: Username cannot be same as that of a namespace's name. Also, following names are restricted - dkube, dkube-infra, kubeflow, istio-system, knative-serving, harbor-system"
+  type: string
+  label: Username
+  required: true
+  group: "Dkube"
+  show_if: "eula=true"
+- variable: required.password
+  default: ""
+  description: "Dkube operator's local sigh-in password"
+  type: password
+  label: Password
+  required: true
+  group: "Dkube"
+  show_if: "eula=true"
+- variable: required.dkube_cluster
+  default: "training"
+  description: "Dkube deploy type"
+  type: enum
+  label: Dkube Cluster
+  required: true
+  options:
+    - "training"
+    - "serving"
+  group: "Dkube"
+  show_if: "eula=true"
+- variable: training.serving_cluster_access_endpoint
+  default: ""
+  description: "Serving cluster access domain or ip address"
+  type: string
+  label: Serving cluster access endpoint
+  group: "Dkube"
+  show_if: "eula=true&&required.dkube_cluster=training"
+- variable: training.serving_cluster_model_registry_port
+  default: 30002
+  description: "Hardcoded port for now - this needs to be allowed by firewalls"
+  type: int
+  label: Serving cluster model registry port
+  group: "Dkube"
+  show_if: "eula=true&&required.dkube_cluster=training"
+- variable: training.serving_cluster_username
+  default: ""
+  description: "Serving cluster access username"
+  type: string
+  label: Serving cluster username
+  group: "Dkube"
+  show_if: "eula=true&&required.dkube_cluster=training"
+- variable: training.serving_cluster_password
+  default: ""
+  description: "Serving cluster access password"
+  type: password
+  label: Serving cluster password
+  group: "Dkube"
+  show_if: "eula=true&&required.dkube_cluster=training"
+- variable: serving.external_access_static_ip
+  default: ""
+  description: "External access domain or ip address which is static"
+  type: string
+  label: External access IP or Domain
+  group: "Dkube"
+  show_if: "eula=true&&required.dkube_cluster=serving"
+- variable: serving.model_registry_port
+  default: 30002
+  description: "Hardcoded port for now - this needs to be allowed by firewalls"
+  type: int
+  label: Model registry port
+  group: "Dkube"
+  show_if: "eula=true&&required.dkube_cluster=serving"
+- variable: optional.dkube_installer_version
+  default: "2.0.7.1"
+  description: "Version of dkube installer to be used"
+  type: string
+  label: Dkube installer version
+  required: true
+  group: "Dkube"
+  show_if: "eula=true"
+- variable: optional.dkube_version
+  default: "2.0.7.1"
+  description: "Version of dkube to be installed"
+  type: string
+  label: Dkube version
+  required: true
+  group: "Dkube"
+  show_if: "eula=true"
+- variable: optional.dkube_dockerhub_credentials_secret
+  default: "dkube-dockerhub-secret"
+  description: "Dockerhub Secrets for 'ocdr' images. If you don't create, this will be auto-created with default values."
+  type: string
+  label: Dkube dockerhub secret name
+  group: "Dkube"
+  show_if: "eula=true"
+- variable: optional.dkube_operator_certificate
+  default: ""
+  description: "TLS Secret of Operator's Certificate & Private Key. If you don't create, place your certificate and private key in $HOME/.dkube"
+  type: string
+  label: Dkube operator certificate secret
+  group: "Dkube"
+  show_if: "eula=true"
+- variable: optional.dkube_registry
+  default: "docker.io/ocdr"
+  description: "Repository from where Dkube images can be picked. Format: registry/[repo]"
+  type: string
+  label: Dkube images registry
+  group: "Dkube"
+  show_if: "eula=true"
+- variable: optional.registry_uname
+  default: ""
+  description: "Images registry username"
+  type: string
+  label: Dkube images registry username
+  group: "Dkube"
+  show_if: "eula=true"
+- variable: optional.registry_passwd
+  default: ""
+  description: "Images registry password"
+  type: password
+  label: Dkube images registry password
+  group: "Dkube"
+  show_if: "eula=true"
+- variable: external.access
+  default: "nodeport"
+  description: "Type of dkube proxy service, possible values are nodeport and loadbalancer"
+  type: enum
+  label: Dkube access type
+  required: true
+  options:
+    - "nodeport"
+    - "loadbalancer"
+  group: "Dkube"
+  show_if: "eula=true"
+- variable: external.install_loadbalancer
+  default: false
+  description: "'true' - to install MetalLB Loadbalancer, Must fill LB VIP IPS if true"
+  type: boolean
+  label: Install MetalLB
+  group: "Dkube"
+  show_if: "eula=true&&external.access=loadbalancer"
+- variable: external.lb_vip_pool
+  default: ""
+  description: "Valid only if Install MetalLB=true, Only CIDR notation is allowed. E.g: 192.168.2.0/24."
+  type: string
+  label: LB VIP Pool
+  group: "Dkube"
+  show_if: "eula=true&&external.access=loadbalancer&&external.install_loadbalancer=true"
+- variable: storage.storage_type
+  default: "disk"
+  description: "Type of storage. Note: ceph storage type can only be use with HA=true And pv or sc can only be used with HA=false"
+  type: enum
+  label: Dkube storage type
+  options:
+    - "disk"
+    - "nfs"
+    - "ceph"
+    - "pv"
+    - "sc"
+  group: "Dkube"
+  required: true
+  show_if: "eula=true"
+- variable: storage.storage_disk_path
+  default: "/var/dkube"
+  description: "Path for dkube storage on the disk"
+  type: string
+  label: Dkube storage disk path
+  group: "Dkube"
+  show_if: "eula=true&&required.ha=false&&storage.storage_type=disk"
+- variable: storage.storage_disk_node
+  default: ""
+  description: "Node name for dkube storage"
+  type: string
+  label: Dkube storage disk node
+  group: "Dkube"
+  show_if: "eula=true&&required.ha=false&&storage.storage_type=disk"
+- variable: storage.storage_pv
+  default: ""
+  description: "Name of persistent volume to be used for storage"
+  type: string
+  label: Storage PV
+  group: "Dkube"
+  show_if: "eula=true&&required.ha=false&&storage.storage_type=pv"
+- variable: storage.storage_sc
+  default: ""
+  description: "Name of storage class to be used for storage. Make sure dynamic provisioner is running for the storage class name"
+  type: string
+  label: Storage class
+  group: "Dkube"
+  show_if: "eula=true&&required.ha=false&&storage.storage_type=sc"
+- variable: storage.storage_nfs_server
+  default: ""
+  description: "NFS server ip to be used for storage"
+  type: string
+  label: NFS Server
+  group: "Dkube"
+  show_if: "eula=true&&storage.storage_type=nfs"
+- variable: storage.storage_nfs_path
+  default: ""
+  description: "NFS path (Make sure the path exists)"
+  type: string
+  label: NFS path
+  group: "Dkube"
+  show_if: "eula=true&&storage.storage_type=nfs"
+- variable: storage.storage_ceph_monitors
+  default: ""
+  description: "Comma separated IPs of ceph monitors"
+  type: string
+  label: Ceph monitors
+  group: "Dkube"
+  show_if: "eula=true&&storage.storage_type=ceph"
+- variable: storage.storage_ceph_secret
+  default: ""
+  description: "Ceph secret"
+  type: string
+  label: Ceph Secret
+  group: "Dkube"
+  show_if: "eula=true&&storage.storage_type=ceph"
+- variable: storage.storage_ceph_path
+  default: "/var/lib/rook"
+  description: "Ceph data and configuration path for internal ceph. Internal ceph is installed when HA=true and Storage type is not equal to nfs or ceph"
+  type: string
+  label: Ceph storage path
+  group: "Dkube"
+  show_if: "eula=true&&required.ha=true&&storage.storage_type!=ceph&&storage.storage_type!=nfs"

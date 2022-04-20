@@ -962,6 +962,23 @@ entries:
     urls:
     - assets/datadog/datadog-2.4.200.tgz
     version: 2.4.200
+  dkube-deployer:
+  - annotations:
+      catalog.cattle.io/certified: partner
+      catalog.cattle.io/display-name: Dkube
+      catalog.cattle.io/release-name: dkube-deployer
+    apiVersion: v2
+    appVersion: "1.0"
+    created: "2022-04-20T10:59:43.833166078+05:30"
+    description: A Helm chart for dkube installation
+    digest: c61d52bf20629b86b116e8eb7a6cc8927558a7d3a2356c6deae4f581a49ac0a6
+    icon: https://github.com/mak-454/dkube-rancher/raw/master/charts/dkube/icon.png
+    kubeVersion: 1.18 - 1.21
+    name: dkube-deployer
+    type: application
+    urls:
+    - assets/dkube/dkube-deployer-1.0.601.tgz
+    version: 1.0.601
   dynatrace-oneagent-operator:
   - annotations:
       catalog.cattle.io/certified: partner
