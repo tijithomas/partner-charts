@@ -203,40 +203,29 @@ questions:
     show_if: "ha=true&&optional.storage.type!=ceph&&optional.storage.type!=nfs"
 # Loadbalancer
 - variable: optional.loadbalancer.access
-  default: ""
+  default: "nodeport"
   description: "Type of dkube proxy service, possible values are nodeport and loadbalancer; Please use loadbalancer if kubeProvider is gke."
-  type: string
+  type: enum
   label: Loadbalancer access
   group: "Loadbalancer"
   show_if: "eula=yes&&ha=true&&optional.storage.type!=ceph&&optional.storage.type!=nfs"
-- variable: optional.loadbalancer.metallb
-  default: "/var/lib/rook"
-  description: "Ceph data and configuration path for internal ceph. Internal ceph is installed when HA=true and Storage type is not equal to nfs or ceph"
-  type: string
-  label: Ceph storage path
-  group: "Loadbalancer"
-  show_if: "eula=yes&&ha=true&&optional.storage.type!=ceph&&optional.storage.type!=nfs"
-- variable: optional.loadbalancer.metallb
-  default: false
-  description: "Set true to install MetalLB Loadbalancer"
-  type: string
-  label: MetalLB Loadbalancer
-  group: "Loadbalancer"
-  show_if: "eula=yes"
-- variable: optional.loadbalancer.vipPool
-  default: ""
-  description: "Valid only if installLoadbalancer is true; Only CIDR notation is allowed. E.g: 192.168.2.0/24"
-  type: string
-  label: Loadbalancer VipPool
-  group: "Loadbalancer"
-  show_if: "eula=yes"
-- variable: optional.loadbalancer.vipPool
-  default: ""
-  description: "Valid only if installLoadbalancer is true; Only CIDR notation is allowed. E.g: 192.168.2.0/24"
-  type: string
-  label: Loadbalancer VipPool
-  group: "Loadbalancer"
-  show_if: "eula=yes"
+  show_subquestion_if: loadbalancer
+  options:
+    - "loadbalancer"
+    - "nodeport"
+  subquestions:
+  - variable: optional.loadbalancer.metallb
+    default: false
+    description: "Set true to install MetalLB Loadbalancer"
+    type: string
+    label: MetalLB Loadbalancer
+  - variable: optional.loadbalancer.vipPool
+    default: ""
+    description: "Valid only if installLoadbalancer is true; Only CIDR notation is allowed. E.g: 192.168.2.0/24"
+    type: string
+    label: Loadbalancer VipPool
+    show_if: "eula=yes"
+# Modelmonitor
 - variable: optional.modelmonitor
   default: false
   description: "To enable modelmonitor in dkube. (true / false)"
