@@ -5,14 +5,14 @@ questions:
   type: boolean
   label: DKUBE-EULA
   required: true
-  group: "Dkube"
+  group: "General"
 - variable: username
   default: ""
   description: "Dkube operator's local sigh-in username: Username cannot be same as that of a namespace's name. Also, following names are restricted - dkube, dkube-infra, kubeflow, istio-system, knative-serving, harbor-system"
   type: string
   label: Username
   required: true
-  group: "Dkube"
+  group: "General"
   show_if: "eula=true"
 - variable: password
   default: ""
@@ -20,7 +20,7 @@ questions:
   type: password
   label: Password
   required: true
-  group: "Dkube"
+  group: "General"
   show_if: "eula=true"
 - variable: version
   default: "2.0.7.1"
@@ -28,7 +28,7 @@ questions:
   type: string
   label: Dkube version
   required: true
-  group: "Dkube"
+  group: "General"
   show_if: "eula=true"
 - variable: provider
   default: ""
@@ -43,7 +43,7 @@ questions:
     - "eks"
     - "ntnx"
     - "tanzu"
-  group: "Dkube"
+  group: "General"
   show_if: "eula=true"
 - variable: ha
   default: false
@@ -51,7 +51,7 @@ questions:
   type: boolean
   label: HA
   required: true
-  group: "Dkube"
+  group: "General"
   show_if: "eula=true"
 - variable: wipedata
   default: yes
@@ -62,7 +62,7 @@ questions:
   options:
     - "yes"
     - "no"
-  group: "Dkube"
+  group: "General"
   show_if: "eula=true"
 - variable: minimal
   default: no
@@ -73,7 +73,7 @@ questions:
   options:
     - "yes"
     - "no"
-  group: "Dkube"
+  group: "General"
   show_if: "eula=true"
 - variable: airgap
   default: no
@@ -84,15 +84,16 @@ questions:
   options:
     - "yes" 
     - "no"
-  group: "Dkube"
+  group: "General"
   show_if: "eula=true"
-- variable: registryi.name
+# registry
+- variable: registry.name
   default: "docker.io/ocdr"
   description: "Repository from where Dkube images can be picked. Format: registry/[repo]"
   type: string
   label: Dkube images registry
   required: true
-  group: "Docker registry settings"
+  group: "Registry"
   show_if: "eula=true"
 - variable: registry.username
   default: ""
@@ -100,7 +101,7 @@ questions:
   type: string
   label: Dkube images registry username
   required: true
-  group: "Docker registry settings"
+  group: "Registry"
   show_if: "eula=true"
 - variable: registry.password
   default: ""
@@ -108,47 +109,9 @@ questions:
   type: password
   label: Dkube images registry password
   required: true
-  group: "Docker registry settings"
+  group: "Registry"
   show_if: "eula=true"
-- variable: optional.dockerhub_secret_name
-  default: "dkube-dockerhub-secret"
-  description: "Dockerhub Secrets for 'ocdr' images. If you don't create, this will be auto-created with default values."
-  type: string
-  label: Dkube dockerhub secret name
-  group: "Dkube"
-  show_if: "eula=true"
-- variable: optional.dkube_operator_certificate
-  default: ""
-  description: "TLS Secret of Operator's Certificate & Private Key. If you don't create, place your certificate and private key in $HOME/.dkube"
-  type: string
-  label: Dkube operator certificate secret
-  group: "Dkube"
-  show_if: "eula=true"
-- variable: external.access
-  default: "nodeport"
-  description: "Type of dkube proxy service, possible values are nodeport and loadbalancer"
-  type: enum
-  label: Dkube access type
-  required: true
-  options:
-    - "nodeport"
-    - "loadbalancer"
-  group: "Dkube"
-  show_if: "eula=true"
-- variable: external.install_loadbalancer
-  default: false
-  description: "'true' - to install MetalLB Loadbalancer, Must fill LB VIP IPS if true"
-  type: boolean
-  label: Install MetalLB
-  group: "Dkube"
-  show_if: "eula=true&&external.access=loadbalancer"
-- variable: external.lb_vip_pool
-  default: ""
-  description: "Valid only if Install MetalLB=true, Only CIDR notation is allowed. E.g: 192.168.2.0/24."
-  type: string
-  label: LB VIP Pool
-  group: "Dkube"
-  show_if: "eula=true&&external.access=loadbalancer&&external.install_loadbalancer=true"
+# STORAGE 
 - variable: optional.storage.type
   default: "disk"
   description: "Type of storage. Note: ceph storage type can only be use with HA=true And pv or sc can only be used with HA=false"
@@ -160,84 +123,209 @@ questions:
     - "ceph"
     - "pv"
     - "sc"
-  group: "Storage settings"
+  group: "Storage"
   show_if: "eula=true"
-- variable: optional.storage.path
-  default: "/var/dkube"
-  description: "Localpath on the storage node"
-  type: string
-  label: Dkube storage disk path
-  group: "Storage settings"
-  show_if: "eula=true&&ha=false&&optional.storage.type=disk"
-- variable: optional.storage.node
+  subquestions:
+  - variable: optional.storage.path
+    default: "/var/dkube"
+    description: "Localpath on the storage node"
+    type: string
+    label: Dkube storage disk path
+    show_if: "ha=false&&optional.storage.type=disk"
+  - variable: optional.storage.node
+    default: ""
+    description: "Node name for dkube storage"
+    type: string
+    label: Dkube storage disk node
+    show_if: "ha=false&&optional.storage.type=disk"
+  - variable: optional.storage.persistentVolume
+    default: ""
+    description: "Name of persistent volume to be used for storage"
+    type: string
+    label: Storage PV
+    show_if: "ha=false&&optional.storage.type=pv"
+  - variable: optional.storage.storageClass
+    default: ""
+    description: "Name of storage class to be used for storage. Make sure dynamic provisioner is running for the storage class name"
+    type: string
+    label: Storage class
+    show_if: "ha=false&&optional.storage.type=sc"
+  - variable: optional.storage.nfsServer
+    default: ""
+    description: "NFS server ip to be used for storage"
+    type: string
+    label: NFS Server
+    show_if: "optional.storage.type=nfs"
+  - variable: optional.storage.nfsPath
+    default: ""
+    description: "NFS path (Make sure the path exists)"
+    type: string
+    label: NFS path
+    show_if: "optional.storage.type=nfs"
+  - variable: optional.storage.cephMonitors
+    default: ""
+    description: "Comma separated IPs of ceph monitors"
+    type: string
+    label: Ceph monitors
+    show_if: "optional.storage.type=ceph"
+  - variable: optional.storage.cephSecret
+    default: ""
+    description: "Ceph secret"
+    type: string
+    label: Ceph Secret
+    show_if: "optional.storage.type=ceph"
+  - variable: optional.storage.cephFilesystem
+    default: ""
+    description: "Ceph Filesystem"
+    type: string
+    label: Ceph Filesystem
+    show_if: "optional.storage.type=ceph"
+  - variable: optional.storage.cephNamespace
+    default: ""
+    description: "Ceph Namespace"
+    type: string
+    label: Ceph Namespace
+    show_if: "optional.storage.type=ceph"
+  - variable: optional.storage.cephPath
+    default: "/var/lib/rook"
+    description: "Ceph data and configuration path for internal ceph. Internal ceph is installed when HA=true and Storage type is not equal to nfs or ceph"
+    type: string
+    label: Ceph storage path
+    show_if: "ha=true&&optional.storage.type!=ceph&&optional.storage.type!=nfs"
+  - variable: optional.storage.cephDisk
+    default: ""
+    description: "Only for internal ceph from release 2.2.1.12 \n Disk name for internal ceph storage \n It should be a raw formatted disk \n E.g: sdb"
+    type: string
+    label: Ceph Storage Disk
+    show_if: "ha=true&&optional.storage.type!=ceph&&optional.storage.type!=nfs"
+# Loadbalancer
+- variable: optional.loadbalancer.access
   default: ""
-  description: "Node name for dkube storage"
+  description: "Type of dkube proxy service, possible values are nodeport and loadbalancer; Please use loadbalancer if kubeProvider is gke."
   type: string
-  label: Dkube storage disk node
-  group: "Dkube"
-  group: "Storage settings"
-  show_if: "eula=true&&ha=false&&optional.storage.type=disk"
-- variable: optional.storage.persistentVolume
-  default: ""
-  description: "Name of persistent volume to be used for storage"
-  type: string
-  label: Storage PV
-  group: "Dkube"
-  group: "Storage settings"
-  show_if: "eula=true&&ha=false&&optional.storage.type=pv"
-- variable: optional.storage.storageClass
-  default: ""
-  description: "Name of storage class to be used for storage. Make sure dynamic provisioner is running for the storage class name"
-  type: string
-  label: Storage class
-  group: "Storage settings"
-  show_if: "eula=true&&ha=false&&optional.storage.type=sc"
-- variable: optional.storage.nfsServer
-  default: ""
-  description: "NFS server ip to be used for storage"
-  type: string
-  label: NFS Server
-  group: "Storage settings"
-  show_if: "eula=true&&optional.storage.type=nfs"
-- variable: optional.storage.nfsPath
-  default: ""
-  description: "NFS path (Make sure the path exists)"
-  type: string
-  label: NFS path
-  group: "Storage settings"
-  show_if: "eula=true&&optional.storage.type=nfs"
-- variable: optional.storage.cephMonitors
-  default: ""
-  description: "Comma separated IPs of ceph monitors"
-  type: string
-  label: Ceph monitors
-  group: "Storage settings"
-  show_if: "eula=true&&optional.storage.type=ceph"
-- variable: optional.storage.cephSecret
-  default: ""
-  description: "Ceph secret"
-  type: string
-  label: Ceph Secret
-  group: "Storage settings"
-  show_if: "eula=true&&optional.storage.type=ceph"
-- variable: optional.storage.cephFilesystem
-  default: ""
-  description: "Ceph Filesystem"
-  type: string
-  label: Ceph Filesystem
-  group: "Storage settings"
-  show_if: "eula=true&&optional.storage.type=ceph"
-- variable: optional.storage.cephNamespace
-  default: ""
-  description: "Ceph Namespace"
-  type: string
-  label: Ceph Namespace
-  group: "Storage settings"
-  show_if: "eula=true&&optional.storage.type=ceph"
-- variable: storage.storage_ceph_path
+  label: Loadbalancer access
+  group: "Loadbalancer"
+  show_if: "eula=true&&ha=true&&optional.storage.type!=ceph&&optional.storage.type!=nfs"
+- variable: optional.loadbalancer.metallb
   default: "/var/lib/rook"
   description: "Ceph data and configuration path for internal ceph. Internal ceph is installed when HA=true and Storage type is not equal to nfs or ceph"
   type: string
   label: Ceph storage path
-  group: "Storage settings"
+  group: "Loadbalancer"
   show_if: "eula=true&&ha=true&&optional.storage.type!=ceph&&optional.storage.type!=nfs"
+- variable: optional.loadbalancer.metallb
+  default: false
+  description: "Set true to install MetalLB Loadbalancer"
+  type: string
+  label: MetalLB Loadbalancer
+  group: "Loadbalancer"
+  show_if: "eula=true"
+- variable: optional.loadbalancer.vipPool
+  default: ""
+  description: "Valid only if installLoadbalancer is true; Only CIDR notation is allowed. E.g: 192.168.2.0/24"
+  type: string
+  label: Loadbalancer VipPool
+  group: "Loadbalancer"
+  show_if: "eula=true"
+- variable: optional.loadbalancer.vipPool
+  default: ""
+  description: "Valid only if installLoadbalancer is true; Only CIDR notation is allowed. E.g: 192.168.2.0/24"
+  type: string
+  label: Loadbalancer VipPool
+  group: "Loadbalancer"
+  show_if: "eula=true"
+- variable: optional.modelmonitor
+  default: false
+  description: "To enable modelmonitor in dkube. (true / false)"
+  type: boolean      
+  label: Modelmonitor Enabled
+  group: "Modelmonitor"
+  show_if: "eula=true"
+# DBAAS
+- variable: optional.DBAAS.database
+  default: ""
+  description: "To configure external database for dkube. Supported mysql, sqlserver(mssql). Empty will pickup default sql db installed with dkube"
+  type: string
+  label: database
+  group: "DBAAS"
+  show_if: "eula=true"
+- variable: optional.DBAAS.dsn
+  default: ""
+  description: "Syntaxes here can be followed to specify dsn https://gorm.io/docs/connecting_to_the_database.html"
+  type: string
+  label: dsn
+  group: "DBAAS"
+  show_if: "eula=true"
+# CICD
+- variable: optional.CICD.enabled
+  default: false
+  description: "To enable tekton cicd with dkube. (true / false)"
+  type: boolean
+  label: CICD Enabled
+  group: "CICD"
+  show_if: "eula=true"
+  show_subquestion_if: true
+  subquestions:
+  - variable: optional.CICD.registryName
+    default: false
+    description: "Docker registry where CICD built images will be saved"
+    type: string
+    label: Docker registry name
+    - variable: optional.CICD.registryUsername
+    default: false
+    description: "Docker registry Username"
+    type: string
+    label: Docker registry name
+  - variable: optional.CICD.registryPassword
+    default: false
+    description: "Docker registry password"
+    type: string
+    label: Docker registry name
+  - variable: optional.CICD.IAMRole
+    default: false
+    description: "For AWS ECR on EKS K8S cluster, enter registry as aws_account_id.dkr.ecr.region.amazonaws.com. \n registryName: 'aws_account_id.dkr.ecr.region.amazonaws.com' Worker nodes should either have AmazonEC2ContainerRegistryFullAccess or if you are using KIAM based IAM control, provide an IAM role which has AmazonEC2ContainerRegistryFullAccess; IAMRole: 'arn:aws:iam::<aws_account_id>:role/<iam-role>'"
+    type: string
+    label: IAMRole
+# Node Affinity
+- variable: optional.nodeAffinity.dkubeNodesLabel
+  default: ""
+  description: "Nodes identified by labels on which the dkube pods must be scheduled.. Say management nodes. Unfilled means no binding. When filled there needs to be minimum of 3nodes in case of HA and one node in case of non-HA \n Example: DKUBE_NODES_LABEL: key1=value1"
+  type: string
+  label: DKUBE_NODES_LABEL
+  group: "NodeAffinity"
+  show_if: "eula=true"
+- variable: optional.nodeAffinity.dkubeNodesTaints
+  default: ""
+  description: "Nodes to be tolerated by dkube control plane pods so that only they can be scheduled on the nodes \n Example: DKUBE_NODES_TAINTS: key1=value1:NoSchedule,key2=value2:NoSchedule"
+  type: string
+  label: DKUBE_NODES_TAINTS 
+  group: "NodeAffinity"
+  show_if: "eula=true"
+- variable: optional.nodeAffinity.gpuWorkloadTaints
+  default: ""
+  description: "Taints of the nodes where gpu workloads must be scheduled. \n Example: GPU_WORKLOADS_TAINTS: key1=value1:NoSchedule,key2=value2:NoSchedule"
+  type: string
+  label: GPU_WORKLOADS_TAINTS
+  group: "NodeAffinity"
+  show_if: "eula=true"
+- variable: optional.nodeAffinity.productionWorkloadTaints
+  default: ""
+  description: "Taints of the nodes where production workloads must be scheduled. \n Example: PRODUCTION_WORKLOADS_TAINTS: key1=value1:NoSchedule,key2=value2:NoSchedule"
+  type: string
+  label: PRODUCTION_WORKLOADS_TAINTS
+  group: "NodesAffinity"
+  show_if: "eula=true"
+- variable: optional.dkubeDockerhubCredentialsSecret
+  default: ""
+  description: "Dockerhub Secrets for OCDR images. If you don't create, this will be auto-created with default values."
+  type: string
+  label: DKUBE DOCKERHUB CREDENTIALS SECRET
+  group: "General"
+  show_if: "eula=true"
+- variable: optional.IAMRole
+  default: ""
+  description: "AWS IAM role \n Valid only if KUBE_PROVIDER=eks \n This will be set as an annotation in few deployments \n Format should be like: IAMRole: '<key>: <iam role>' \n eg: IAMRole: 'iam.amazonaws.com/role: arn:aws:iam::123456789012:role/myrole'"
+  type: string
+  label: IAMRole
+  group: "General"
+  show_if: "eula=true&&provider=eks"
