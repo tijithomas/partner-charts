@@ -51,9 +51,12 @@ questions:
 - variable: ha
   default: false
   description: "When HA=true k8s cluster must have min 3 schedulable nodes"
-  type: boolean
-  label: HA
+  type: string
+  label: HA enabled
   required: true
+  options:
+    - "true"
+    - "false"
   group: "General"
   show_if: "eula=yes"
 - variable: wipedata
@@ -215,7 +218,9 @@ questions:
     - "loadbalancer"
     - "nodeport"
   show_subquestion_if: loadbalancer
-  show_if: "optional.storage.type!=disk"
+  #show_if: "optional.storage.type!=disk"
+  show_if: "eula=yes&&ha=true&&optional.storage.type!=ceph&&optional.storage.type!=nfs"
+  #show_if: "ha=true&&optional.storage.type=ceph"
   subquestions:
   - variable: optional.loadbalancer.metallb
     default: false
