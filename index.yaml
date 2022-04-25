@@ -969,6 +969,22 @@ entries:
       catalog.cattle.io/release-name: dkube-deployer
     apiVersion: v2
     appVersion: "1.0"
+    created: "2022-04-25T09:00:27.052877752+05:30"
+    description: A Helm chart for dkube installation
+    digest: 69641638a6354ccd79d7252b33931ffb8bbfb3f934141ccd2a84b3294efce90a
+    icon: https://github.com/mak-454/dkube-rancher/raw/master/charts/dkube/icon.png
+    kubeVersion: 1.18 - 1.21
+    name: dkube-deployer
+    type: application
+    urls:
+    - assets/dkube/dkube-deployer-1.0.605.tgz
+    version: 1.0.605
+  - annotations:
+      catalog.cattle.io/certified: partner
+      catalog.cattle.io/display-name: Dkube
+      catalog.cattle.io/release-name: dkube-deployer
+    apiVersion: v2
+    appVersion: "1.0"
     created: "2022-04-22T23:46:44.112705526+05:30"
     description: A Helm chart for dkube installation
     digest: c14e716952d7544e830210cc08dcd3e7bd9203de90f7b25f29833527dbac2a98
