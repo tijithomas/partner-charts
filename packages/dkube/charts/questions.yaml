@@ -215,7 +215,7 @@ questions:
     - "loadbalancer"
     - "nodeport"
   show_subquestion_if: loadbalancer
-  show_if: "ha=false&&optional.storage.type=ceph"
+  show_if: "ha=false&&!(optional.storage.type=ceph)"
   subquestions:
   - variable: optional.loadbalancer.metallb
     default: false
