@@ -210,7 +210,8 @@ questions:
   group: "Loadbalancer"
   #show_if: "eula=yes&&ha=true"
   #show_if: "eula=yes&&ha=true&&optional.storage.type!=ceph&&optional.storage.type!=nfs"
-  show_if: "ha=true&&optional.storage.type=ceph"
+  #show_if: "ha=true&&optional.storage.type=ceph"
+  show_if: "ha=false&&optional.storage.type=disk"
   show_subquestion_if: loadbalancer
   options:
     - "loadbalancer"
