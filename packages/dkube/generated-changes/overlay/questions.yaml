@@ -203,7 +203,7 @@ questions:
     show_if: "ha=true&&optional.storage.type!=ceph&&optional.storage.type!=nfs"
 # Loadbalancer
 - variable: optional.loadbalancer.access
-  default: "nodeport"
+  default: "loadbalancer"
   description: "Type of dkube proxy service, possible values are nodeport and loadbalancer; Please use loadbalancer if kubeProvider is gke."
   type: enum
   label: Loadbalancer access
