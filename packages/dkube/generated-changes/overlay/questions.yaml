@@ -211,11 +211,11 @@ questions:
   #show_if: "eula=yes&&ha=true"
   #show_if: "eula=yes&&ha=true&&optional.storage.type!=ceph&&optional.storage.type!=nfs"
   #show_if: "ha=true&&optional.storage.type=ceph"
-  show_if: "ha=false&&optional.storage.type=disk"
-  show_subquestion_if: loadbalancer
   options:
     - "loadbalancer"
     - "nodeport"
+  show_subquestion_if: loadbalancer
+  show_if: "ha=false&&optional.storage.type=ceph"
   subquestions:
   - variable: optional.loadbalancer.metallb
     default: false
