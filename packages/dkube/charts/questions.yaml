@@ -209,7 +209,7 @@ questions:
   label: Loadbalancer access
   group: "Loadbalancer"
   show_if: "eula=yes&&ha=true"
-  show_if: "optional.storage.type!=ceph&&optional.storage.type!=nfs"
+  #show_if: "optional.storage.type!=ceph&&optional.storage.type!=nfs"
   show_subquestion_if: loadbalancer
   options:
     - "loadbalancer"
