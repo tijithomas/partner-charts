@@ -240,7 +240,7 @@ questions:
     show_if: "EULA=yes"
 # Modelmonitor
 - variable: optional.modelmonitor
-  default: false
+  default: "false"
   description: "To enable modelmonitor in dkube. (true / false)"
   type: boolean      
   label: Modelmonitor Enabled
@@ -263,7 +263,7 @@ questions:
   show_if: "EULA=yes"
 # CICD
 - variable: optional.CICD.enabled
-  default: false
+  default: "false"
   description: "To enable tekton cicd with dkube. (true / false)"
   type: boolean
   label: CICD Enabled
