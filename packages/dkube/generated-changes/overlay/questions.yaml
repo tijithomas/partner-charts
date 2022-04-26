@@ -49,11 +49,14 @@ questions:
   group: "General"
   show_if: "EULA=yes"
 - variable: ha
-  default: false
+  default: "\"false\""
   description: "When HA=true k8s cluster must have min 3 schedulable nodes"
-  type: boolean
+  type: enum
   label: HA enabled
   required: true
+  options:
+    - "\"true\""
+    - "\"false\""
   group: "General"
   show_if: "EULA=yes"
 - variable: wipedata
@@ -134,25 +137,25 @@ questions:
     description: "Localpath on the storage node"
     type: string
     label: Dkube storage disk path
-    show_if: "ha=false&&optional.storage.type=disk"
+    show_if: "ha=\"false\"&&optional.storage.type=disk"
   - variable: optional.storage.node
     default: ""
     description: "Node name for dkube storage"
     type: string
     label: Dkube storage disk node
-    show_if: "ha=false&&optional.storage.type=disk"
+    show_if: "ha=\"false\"&&optional.storage.type=disk"
   - variable: optional.storage.persistentVolume
     default: ""
     description: "Name of persistent volume to be used for storage"
     type: string
     label: Storage PV
-    show_if: "ha=false&&optional.storage.type=pv"
+    show_if: "ha=\"false\"&&optional.storage.type=pv"
   - variable: optional.storage.storageClass
     default: ""
     description: "Name of storage class to be used for storage. Make sure dynamic provisioner is running for the storage class name"
     type: string
     label: Storage class
-    show_if: "ha=false&&optional.storage.type=sc"
+    show_if: "ha=\"false\"&&optional.storage.type=sc"
   - variable: optional.storage.nfsServer
     default: ""
     description: "NFS server ip to be used for storage"
@@ -194,13 +197,13 @@ questions:
     description: "Ceph data and configuration path for internal ceph. Internal ceph is installed when HA=true and Storage type is not equal to nfs or ceph"
     type: string
     label: Ceph storage path
-    show_if: "ha=true&&optional.storage.type!=ceph&&optional.storage.type!=nfs"
+    show_if: "ha=\"true\"&&optional.storage.type!=ceph&&optional.storage.type!=nfs"
   - variable: optional.storage.cephDisk
     default: ""
     description: "Only for internal ceph from release 2.2.1.12 \n Disk name for internal ceph storage \n It should be a raw formatted disk \n E.g: sdb"
     type: string
     label: Ceph Storage Disk
-    show_if: "ha=true&&optional.storage.type!=ceph&&optional.storage.type!=nfs"
+    show_if: "ha=\"true\"&&optional.storage.type!=ceph&&optional.storage.type!=nfs"
 # Loadbalancer
 - variable: optional.loadbalancer.access
   default: "loadbalancer"
@@ -216,7 +219,7 @@ questions:
     - "nodeport"
   show_subquestion_if: loadbalancer
   #show_if: "optional.storage.type!=disk"
-  show_if: "EULA=yes&&ha=true&&optional.storage.type!=ceph&&optional.storage.type!=nfs"
+  show_if: "EULA=yes&&ha=\"true\"&&optional.storage.type!=ceph&&optional.storage.type!=nfs"
   #show_if: "ha=true&&optional.storage.type=ceph"
   subquestions:
   - variable: optional.loadbalancer.metallb
