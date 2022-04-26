@@ -1,6 +1,5 @@
 questions:
 - variable: EULA
-  default: "no"
   description: "www.oneconvergence.com/EULA/One-Convergence-EULA.pdf . By accepting this license agreement you acknowledge that you have read and understood the terms and conditions mentioned."
   type: enum
   label: DKUBE-EULA
@@ -8,7 +7,6 @@ questions:
   group: "General"
   options:
   - "yes"
-  - "no"
 - variable: username
   default: ""
   description: "Dkube operator's local sigh-in username: Username cannot be same as that of a namespace's name. Also, following names are restricted - dkube, dkube-infra, kubeflow, istio-system, knative-serving, harbor-system"
