@@ -49,14 +49,14 @@ questions:
   group: "General"
   show_if: "EULA=yes"
 - variable: ha
-  default: "\"false\""
+  default: "false"
   description: "When HA=true k8s cluster must have min 3 schedulable nodes"
   type: enum
   label: HA enabled
   required: true
   options:
-    - "\"true\""
-    - "\"false\""
+    - "true"
+    - "false"
   group: "General"
   show_if: "EULA=yes"
 - variable: wipedata
