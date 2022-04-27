@@ -278,7 +278,7 @@ questions:
     - "false"
   group: "CICD"
   show_if: "EULA=yes"
-  show_subquestion_if: true
+  show_subquestion_if: "true"
   subquestions:
     - variable: optional.CICD.registryName
       description: "Docker registry where CICD built images will be saved"
