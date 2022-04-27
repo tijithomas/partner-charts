@@ -279,24 +279,28 @@ questions:
     - "false"
   group: "CICD"
   show_if: "EULA=yes"
-  show_subquestion_if: "optional.CICD.enabled=true"
+  #show_subquestion_if: "d"
   subquestions:
     - variable: optional.CICD.registryName
       description: "Docker registry where CICD built images will be saved"
       type: string
       label: Docker Registry name
+      show_if: "optional.CICD.enabled=true"
     - variable: optional.CICD.registryUsername
       description: "Docker registry Username"
       type: string
       label: Docker Registry Username
+      show_if: "optional.CICD.enabled=true"
     - variable: optional.CICD.registryPassword
       description: "Docker registry password"
       type: string
       label: Docker Registry Password
+      show_if: "optional.CICD.enabled=true"
     - variable: optional.CICD.IAMRole
       description: "For AWS ECR on EKS K8S cluster, enter registry as aws_account_id.dkr.ecr.region.amazonaws.com. ; registryName: 'aws_account_id.dkr.ecr.region.amazonaws.com' Worker nodes should either have AmazonEC2ContainerRegistryFullAccess or if you are using KIAM based IAM control, provide an IAM role which has AmazonEC2ContainerRegistryFullAccess; IAMRole: 'arn:aws:iam::<aws_account_id>:role/<iam-role>'"
       type: string
       label: IAMRole
+      show_if: "optional.CICD.enabled=true"
 # Node Affinity
 - variable: optional.nodeAffinity.dkubeNodesLabel
   default: ""
