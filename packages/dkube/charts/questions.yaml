@@ -285,7 +285,7 @@ questions:
       description: "Docker registry where CICD built images will be saved"
       type: string
       label: Docker Registry name
-      show_if: "optional.CICD.enabled=true"
+      #show_if: "optional.CICD.enabled=true"
     - variable: optional.CICD.registryUsername
       description: "Docker registry Username"
       type: string
