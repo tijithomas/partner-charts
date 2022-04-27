@@ -270,6 +270,7 @@ questions:
 # CICD
 - variable: optional.CICD.enabled
   description: "To enable tekton cicd with dkube. (true / false)"
+  default: "false"
   type: enum
   label: Enable CICD
   required: false
@@ -278,7 +279,7 @@ questions:
     - "false"
   group: "CICD"
   show_if: "EULA=yes"
-  show_subquestion_if: "true"
+  show_subquestion_if: "false"
   subquestions:
     - variable: optional.CICD.registryName
       description: "Docker registry where CICD built images will be saved"
