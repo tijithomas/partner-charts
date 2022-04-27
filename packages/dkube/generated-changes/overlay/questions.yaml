@@ -266,10 +266,10 @@ questions:
   show_if: "EULA=yes"
 # CICD
 - variable: optional.CICD.enabled
-  default: false
   description: "To enable tekton cicd with dkube. (true / false)"
   type: boolean
   label: CICD Enabled
+  required: false
   group: "CICD"
   show_if: "EULA=yes"
   show_subquestion_if: true
