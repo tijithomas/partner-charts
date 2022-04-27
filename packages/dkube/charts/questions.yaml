@@ -233,8 +233,8 @@ questions:
     type: enum
     label: MetalLB Loadbalancer
     options:
-    - "true"
-    - "false"
+      - "true"
+      - "false"
   - variable: optional.loadbalancer.vipPool
     default: ""
     description: "Valid only if installLoadbalancer is true; Only CIDR notation is allowed. E.g: 192.168.2.0/24"
@@ -245,8 +245,11 @@ questions:
 - variable: optional.modelmonitor
   default: "false"
   description: "To enable modelmonitor in dkube. (true / false)"
-  type: boolean      
+  type: enum
   label: Modelmonitor Enabled
+  options:
+    - "true"
+    - "false"
   group: "General"
   show_if: "EULA=yes"
 # DBAAS
@@ -267,9 +270,12 @@ questions:
 # CICD
 - variable: optional.CICD.enabled
   description: "To enable tekton cicd with dkube. (true / false)"
-  type: boolean
-  label: CICD Enabled
+  type: enum
+  label: Enable CICD
   required: false
+  options:
+    - "true"
+    - "false"
   group: "CICD"
   show_if: "EULA=yes"
   show_subquestion_if: true
@@ -277,15 +283,15 @@ questions:
     - variable: optional.CICD.registryName
       description: "Docker registry where CICD built images will be saved"
       type: string
-      label: Docker registry name
+      label: Docker Registry name
     - variable: optional.CICD.registryUsername
       description: "Docker registry Username"
       type: string
-      label: Docker registry name
+      label: Docker Registry Username
     - variable: optional.CICD.registryPassword
       description: "Docker registry password"
       type: string
-      label: Docker registry name
+      label: Docker Registry Password
     - variable: optional.CICD.IAMRole
       description: "For AWS ECR on EKS K8S cluster, enter registry as aws_account_id.dkr.ecr.region.amazonaws.com. ; registryName: 'aws_account_id.dkr.ecr.region.amazonaws.com' Worker nodes should either have AmazonEC2ContainerRegistryFullAccess or if you are using KIAM based IAM control, provide an IAM role which has AmazonEC2ContainerRegistryFullAccess; IAMRole: 'arn:aws:iam::<aws_account_id>:role/<iam-role>'"
       type: string
