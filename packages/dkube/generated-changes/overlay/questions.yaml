@@ -93,7 +93,7 @@ questions:
 # registry
 - variable: registry.name
   default: "docker.io/ocdr"
-  description: "Repository from where Dkube images can be picked. Format: registry/[repo]. Please contact support.dkube.io for Dkube registry details"
+  description: "Repository from where Dkube images can be picked. Format: registry/[repo]. Please contact support@dkube.io for Dkube registry details"
   type: string
   label: Dkube images registry
   required: true

@@ -20,7 +20,7 @@ The following is the minimum configuration required to deploy DKube on a Rancher
 - Storage
   - The recommended storage option for DKube meta-data and user ML resources is an external NFS server with a min of 1TB storage available.
   - For evaluation purposes, one of the worker nodes can be configured as the storage option. In this case the recommended size of storage on the worker node is 1 TB and a minimum size of 400 GB.
-* Dkube recommends a Kubernetes version of 1.16 or higher.
+- Dkube requires a Kubernetes version of 1.20.
+- Dkube images registry details are required for installation. Please send a mail to support@dkube.io for the details.
 
-Before you proceed with the installation, please contact us at support.dkube.io to get details of Dkube images registry.
 For more information on installation, refer to the [Dkube Installation Guide](https://dkube.io/install/install3_x/Install-Advanced.html).
