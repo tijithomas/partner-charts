@@ -1,6 +1,6 @@
 questions:
 - variable: EULA
-  description: "www.oneconvergence.com/EULA/One-Convergence-EULA.pdf . By accepting this license agreement you acknowledge that you have read and understood the terms and conditions mentioned."
+  description: "www.oneconvergence.com/EULA/One-Convergence-EULA.pdf . By accepting this license agreement you acknowledge that you have read and understood the terms and conditions mentioned. Please refer to Basic Configuration section of the installation guide. https://dkube.io/install/install3_x/Install-Advanced.html#basic-configuration"
   type: enum
   label: DKUBE-EULA
   required: true
@@ -9,7 +9,7 @@ questions:
   - "yes"
 - variable: username
   default: ""
-  description: "Dkube operator's local sigh-in username: Username cannot be same as that of a namespace's name. Also, following names are restricted - dkube, dkube-infra, kubeflow, istio-system, knative-serving, harbor-system"
+  description: "Dkube operator's local sigh-in username: Username cannot be same as that of a namespace's name. Also, following names are restricted - dkube, dkube-infra, kubeflow, istio-system, knative-serving, harbor-system. Please refer to Basic Configuration section of the installation guide. https://dkube.io/install/install3_x/Install-Advanced.html#basic-configuration"
   type: string
   label: Username
   required: true
@@ -118,7 +118,7 @@ questions:
 # STORAGE 
 - variable: optional.storage.type
   default: "disk"
-  description: "Type of storage. Note: ceph storage type can only be use with HA=true And pv or sc can only be used with HA=false"
+  description: "Type of storage. Note: ceph storage type can only be use with HA=true And pv or sc can only be used with HA=false. Please refer to Storage options section of installation guide. https://dkube.io/install/install3_x/Install-Advanced.html#storage-options"
   type: enum
   label: Dkube storage type
   options:
@@ -210,7 +210,7 @@ questions:
     show_if: "optional.storage.type!=ceph&&optional.storage.type!=nfs"
 # Loadbalancer
 - variable: optional.loadbalancer.access
-  default: "loadbalancer"
+  default: "nodeport"
   description: "Type of dkube proxy service, possible values are nodeport and loadbalancer; Please use loadbalancer if kubeProvider is gke."
   type: enum
   label: Loadbalancer access
@@ -229,7 +229,7 @@ questions:
   subquestions:
   - variable: optional.loadbalancer.metallb
     default: false
-    description: "Set true to install MetalLB Loadbalancer"
+    description: "Set true to install MetalLB Loadbalancer. Please refer to Load Balancer options section of installation guide. https://dkube.io/install/install3_x/Install-Advanced.html#load-balancer-options"
     type: string
     label: MetalLB Loadbalancer
   - variable: optional.loadbalancer.vipPool
@@ -241,7 +241,7 @@ questions:
 # Modelmonitor
 - variable: optional.modelmonitor
   default: "false"
-  description: "To enable modelmonitor in dkube. (true / false)"
+  description: "To enable modelmonitor in dkube. (true / false). Please refer to Model Monitor section of installation guide. https://dkube.io/install/install3_x/Install-Advanced.html#model-monitor"
   type: boolean      
   label: Modelmonitor Enabled
   group: "General"
@@ -249,7 +249,7 @@ questions:
 # DBAAS
 - variable: optional.DBAAS.database
   default: ""
-  description: "To configure external database for dkube. Supported mysql, sqlserver(mssql). Empty will pickup default sql db installed with dkube"
+  description: "To configure external database for dkube. Supported mysql, sqlserver(mssql). Empty will pickup default sql db installed with dkube. Please refer to section External Database of installation guide. https://dkube.io/install/install3_x/Install-Advanced.html#external-database"
   type: string
   label: database
   group: "DBAAS"
@@ -264,7 +264,7 @@ questions:
 # CICD
 - variable: optional.CICD.enabled
   default: "false"
-  description: "To enable tekton cicd with dkube. (true / false)"
+  description: "To enable tekton cicd with dkube. (true / false). Please refer to CICD section of installation guide. https://dkube.io/install/install3_x/Install-Advanced.html#ci-cd"
   type: boolean
   label: CICD Enabled
   group: "CICD"
@@ -294,7 +294,7 @@ questions:
 # Node Affinity
 - variable: optional.nodeAffinity.dkubeNodesLabel
   default: ""
-  description: "Nodes identified by labels on which the dkube pods must be scheduled.. Say management nodes. Unfilled means no binding. When filled there needs to be minimum of 3nodes in case of HA and one node in case of non-HA \n Example: DKUBE_NODES_LABEL: key1=value1"
+  description: "Nodes identified by labels on which the dkube pods must be scheduled.. Say management nodes. Unfilled means no binding. When filled there needs to be minimum of 3nodes in case of HA and one node in case of non-HA \n Example: DKUBE_NODES_LABEL: key1=value1. Please refer to section Node Affinity of installation guide. https://dkube.io/install/install3_x/Install-Advanced.html#node-affinity"
   type: string
   label: DKUBE_NODES_LABEL
   group: "NodeAffinity"
