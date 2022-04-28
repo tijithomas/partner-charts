@@ -1,6 +1,7 @@
 questions:
 - variable: EULA
-  description: "The Dkube EULA is available at www.oneconvergence.com/EULA/One-Convergence-EULA.pdf . By accepting this license agreement you acknowledge that you have read and understood the terms and conditions mentioned. Please refer to Basic Configuration section of the installation guide. https://dkube.io/install/install3_x/Install-Advanced.html#basic-configuration"
+  #description: "The Dkube EULA is available at www.oneconvergence.com/EULA/One-Convergence-EULA.pdf . By accepting this license agreement you acknowledge that you have read and understood the terms and conditions mentioned. Please refer to Basic Configuration section of the installation guide. https://dkube.io/install/install3_x/Install-Advanced.html#basic-configuration"
+  description: <a href="http://testing.test123.org/xx3/landing.gsp">Testing Landing Page</a>
   type: enum
   label: DKUBE-EULA
   required: true
