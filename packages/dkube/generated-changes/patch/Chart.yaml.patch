@@ -1,12 +1,8 @@
 --- charts-original/Chart.yaml
 +++ charts/Chart.yaml
-@@ -1,22 +1,15 @@
-+annotations:
-+  catalog.cattle.io/certified: partner # Enables the "partner" badge in the UI for easier identification
-+  catalog.cattle.io/release-name: dkube-deployer # Your chart's name in kebab-case, this is used for deployment
-+  catalog.cattle.io/display-name: Dkube # The chart's name you want displayed in the UI
- apiVersion: v2
--name: dkube-deployer
+@@ -1,22 +1,16 @@
+-apiVersion: v2
+ name: dkube-deployer
 -description: A Helm chart for Dkube product installation on kubernetes platform
 -
 -# A chart can be either an 'application' or a 'library' chart.
@@ -17,6 +13,11 @@
 -# Library charts provide useful utilities or functions for the chart developer. They're included as
 -# a dependency of application charts to inject those utilities and functions into the rendering
 -# pipeline. Library charts do not define any templates and therefore cannot be deployed.
++annotations:
++  catalog.cattle.io/certified: partner # Enables the "partner" badge in the UI for easier identification
++  catalog.cattle.io/release-name: dkube-deployer # Your chart's name in kebab-case, this is used for deployment
++  catalog.cattle.io/display-name: Dkube # The chart's name you want displayed in the UI
++apiVersion: v2
 +appVersion: "1.0"
 +kubeVersion: "1.18 - 1.21"
 +description: A Helm chart for Dkube Installation

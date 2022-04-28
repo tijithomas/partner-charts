@@ -1,3 +1,4 @@
+name: dkube-deployer
 annotations:
   catalog.cattle.io/certified: partner # Enables the "partner" badge in the UI for easier identification
   catalog.cattle.io/release-name: dkube-deployer # Your chart's name in kebab-case, this is used for deployment
