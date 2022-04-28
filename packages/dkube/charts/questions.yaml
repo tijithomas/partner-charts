@@ -48,7 +48,7 @@ questions:
   show_if: "EULA=yes"
 - variable: ha
   default: "false"
-  description: "When HA=true k8s cluster must have min 3 schedulable nodes"
+  description: "When HA=true k8s cluster must have min 3 schedulable nodes. Please refer to resilient operation section of the installation guide. https://dkube.io/install/install3_x/Install-Advanced.html#resilient-operation"
   type: enum
   label: HA enabled
   required: true
@@ -93,7 +93,7 @@ questions:
 # registry
 - variable: registry.name
   default: "docker.io/ocdr"
-  description: "Repository from where Dkube images can be picked. Format: registry/[repo]"
+  description: "Repository from where Dkube images can be picked. Format: registry/[repo]. Please contact support.dkube.io for Dkube registry details"
   type: string
   label: Dkube images registry
   required: true
