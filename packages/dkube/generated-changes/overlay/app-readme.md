@@ -8,7 +8,6 @@ With DKube you can prepare your data including feature engineering, train AI mod
 
 ### Requirements
 The following is the minimum configuration required to deploy DKube on a Rancher cluster
-- Rancher cluster with 1 control plane and 2 worker nodes
 - The minimal configuration for each of the worker nodes is as follows:
   - 8 cores
   - 32 GB RAM
