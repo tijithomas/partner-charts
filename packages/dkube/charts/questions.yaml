@@ -329,7 +329,7 @@ questions:
   show_if: "EULA=yes"
 - variable: optional.IAMRole
   default: ""
-  description: "AWS IAM role In a [Kubernetes](https://kubernetes.io/)  \n Valid only if KUBE_PROVIDER=eks \n This will be set as an annotation in few deployments \n Format should be like: IAMRole: '<key>: <iam role>' \n eg: IAMRole: 'iam.amazonaws.com/role: arn:aws:iam::123456789012:role/myrole'"
+  description: "AWS IAM role. Valid only if KUBE_PROVIDER=eks \n This will be set as an annotation in few deployments \n Format should be like: IAMRole: '<key>: <iam role>' \n eg: IAMRole: 'iam.amazonaws.com/role: arn:aws:iam::123456789012:role/myrole'"
   type: string
   label: IAMRole
   group: "General"

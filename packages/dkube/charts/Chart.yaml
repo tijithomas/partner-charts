@@ -1,25 +1,15 @@
-apiVersion: v2
-name: dkube-deployer
-description: A Helm chart for dkube installation
-
-# A chart can be either an 'application' or a 'library' chart.
-#
-# Application charts are a collection of templates that can be packaged into versioned archives
-# to be deployed.
-#
-# Library charts provide useful utilities or functions for the chart developer. They're included as
-# a dependency of application charts to inject those utilities and functions into the rendering
-# pipeline. Library charts do not define any templates and therefore cannot be deployed.
-type: application
-
-# This is the chart version. This version number should be incremented each time you make changes
-# to the chart and its templates, including the app version.
-# Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 1.0.6
-appVersion: "1.0"
-icon: https://github.com/mak-454/dkube-rancher/raw/master/charts/dkube/icon.png
-kubeVersion: "1.18 - 1.21"
 annotations:
   catalog.cattle.io/certified: partner # Enables the "partner" badge in the UI for easier identification
   catalog.cattle.io/release-name: dkube-deployer # Your chart's name in kebab-case, this is used for deployment
   catalog.cattle.io/display-name: Dkube # The chart's name you want displayed in the UI
+apiVersion: v2
+appVersion: "3.2.0.1"
+kubeVersion: "1.18 - 1.21"
+description: A Helm chart for Dkube Installation
+type: application
+home: https://dkube.io
+icon: https://github.com/mak-454/dkube-rancher/raw/master/charts/dkube/icon.png
+# This is the chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+# Versions are expected to follow Semantic Versioning (https://semver.org/)
+version: 1.0.6
