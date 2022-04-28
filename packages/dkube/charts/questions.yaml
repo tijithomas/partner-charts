@@ -203,7 +203,7 @@ questions:
     show_if: "optional.storage.type!=ceph&&optional.storage.type!=nfs"
   - variable: optional.storage.cephDisk
     default: ""
-    description: "Only for internal ceph from release 2.2.1.12 \n Disk name for internal ceph storage \n It should be a raw formatted disk \n E.g: sdb"
+    description: "Only for internal ceph from release 2.2.1.12. Disk name for internal ceph storage. It should be a raw formatted disk. E.g: sdb"
     type: string
     label: Ceph Storage Disk
     #show_if: "ha=\"true\"&&optional.storage.type!=ceph&&optional.storage.type!=nfs"
@@ -288,34 +288,34 @@ questions:
       label: Docker registry Password
     - variable: optional.CICD.IAMRole
       default: false
-      description: "For AWS ECR on EKS K8S cluster, enter registry as aws_account_id.dkr.ecr.region.amazonaws.com. \n registryName: 'aws_account_id.dkr.ecr.region.amazonaws.com' Worker nodes should either have AmazonEC2ContainerRegistryFullAccess or if you are using KIAM based IAM control, provide an IAM role which has AmazonEC2ContainerRegistryFullAccess; IAMRole: 'arn:aws:iam::<aws_account_id>:role/<iam-role>'"
+      description: "For AWS ECR on EKS K8S cluster, enter registry as aws_account_id.dkr.ecr.region.amazonaws.com. registryName: 'aws_account_id.dkr.ecr.region.amazonaws.com' Worker nodes should either have AmazonEC2ContainerRegistryFullAccess or if you are using KIAM based IAM control, provide an IAM role which has AmazonEC2ContainerRegistryFullAccess; IAMRole: 'arn:aws:iam::<aws_account_id>:role/<iam-role>'"
       type: string
       label: IAMRole
 # Node Affinity
 - variable: optional.nodeAffinity.dkubeNodesLabel
   default: ""
-  description: "Nodes identified by labels on which the dkube pods must be scheduled.. Say management nodes. Unfilled means no binding. When filled there needs to be minimum of 3nodes in case of HA and one node in case of non-HA \n Example: DKUBE_NODES_LABEL: key1=value1. Please refer to section Node Affinity of installation guide. https://dkube.io/install/install3_x/Install-Advanced.html#node-affinity"
+  description: "Nodes identified by labels on which the dkube pods must be scheduled.. Say management nodes. Unfilled means no binding. When filled there needs to be minimum of 3nodes in case of HA and one node in case of non-HA. Example: DKUBE_NODES_LABEL: key1=value1. Please refer to section Node Affinity of installation guide. https://dkube.io/install/install3_x/Install-Advanced.html#node-affinity"
   type: string
   label: DKUBE_NODES_LABEL
   group: "NodeAffinity"
   show_if: "EULA=yes"
 - variable: optional.nodeAffinity.dkubeNodesTaints
   default: ""
-  description: "Nodes to be tolerated by dkube control plane pods so that only they can be scheduled on the nodes \n Example: DKUBE_NODES_TAINTS: key1=value1:NoSchedule,key2=value2:NoSchedule"
+  description: "Nodes to be tolerated by dkube control plane pods so that only they can be scheduled on the nodes. Example: DKUBE_NODES_TAINTS: key1=value1:NoSchedule,key2=value2:NoSchedule"
   type: string
   label: DKUBE_NODES_TAINTS 
   group: "NodeAffinity"
   show_if: "EULA=yes"
 - variable: optional.nodeAffinity.gpuWorkloadTaints
   default: ""
-  description: "Taints of the nodes where gpu workloads must be scheduled. \n Example: GPU_WORKLOADS_TAINTS: key1=value1:NoSchedule,key2=value2:NoSchedule"
+  description: "Taints of the nodes where gpu workloads must be scheduled. Example: GPU_WORKLOADS_TAINTS: key1=value1:NoSchedule,key2=value2:NoSchedule"
   type: string
   label: GPU_WORKLOADS_TAINTS
   group: "NodeAffinity"
   show_if: "EULA=yes"
 - variable: optional.nodeAffinity.productionWorkloadTaints
   default: ""
-  description: "Taints of the nodes where production workloads must be scheduled. \n Example: PRODUCTION_WORKLOADS_TAINTS: key1=value1:NoSchedule,key2=value2:NoSchedule"
+  description: "Taints of the nodes where production workloads must be scheduled. Example: PRODUCTION_WORKLOADS_TAINTS: key1=value1:NoSchedule,key2=value2:NoSchedule"
   type: string
   label: PRODUCTION_WORKLOADS_TAINTS
   group: "NodeAffinity"
@@ -329,7 +329,7 @@ questions:
   show_if: "EULA=yes"
 - variable: optional.IAMRole
   default: ""
-  description: "AWS IAM role. Valid only if KUBE_PROVIDER=eks \n This will be set as an annotation in few deployments \n Format should be like: IAMRole: '<key>: <iam role>' \n eg: IAMRole: 'iam.amazonaws.com/role: arn:aws:iam::123456789012:role/myrole'"
+  description: "AWS IAM role. Valid only if KUBE_PROVIDER=eks. This will be set as an annotation in few deployments. Format should be like: IAMRole: '<key>: <iam role>' eg: IAMRole: 'iam.amazonaws.com/role: arn:aws:iam::123456789012:role/myrole'"
   type: string
   label: IAMRole
   group: "General"
