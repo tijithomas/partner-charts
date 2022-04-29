@@ -5,7 +5,7 @@ annotations:
   catalog.cattle.io/display-name: Dkube # The chart's name you want displayed in the UI
 apiVersion: v2
 appVersion: "1.0"
-kubeVersion: "1.18 - 1.21"
+kubeVersion: "1.20"
 description: A Helm chart for Dkube Installation
 type: application
 home: https://dkube.io

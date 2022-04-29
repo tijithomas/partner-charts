@@ -10,4 +10,4 @@ icon: https://github.com/mak-454/dkube-rancher/raw/master/charts/dkube/icon.png
 kubeVersion: 1.18 - 1.21
 name: dkube-deployer
 type: application
-version: 1.0.610
+version: 1.0.611
