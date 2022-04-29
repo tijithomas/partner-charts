@@ -9,8 +9,8 @@ With DKube you can prepare your data including feature engineering, train AI mod
 ### Requirements
 The following is the minimum configuration required to deploy DKube on a Rancher cluster
 - The minimal configuration for each of the worker nodes is as follows:
-  - 8 cores
-  - 32 GB RAM
+  - 16 cores
+  - 64 GB RAM
   - 300 GB storage for Root Volume
 - The worker nodes could be brought up with any of the following OS distributions
   - Ubuntu 20.04
