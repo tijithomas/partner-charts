@@ -4,7 +4,7 @@ annotations:
   catalog.cattle.io/release-name: dkube-deployer # Your chart's name in kebab-case, this is used for deployment
   catalog.cattle.io/display-name: Dkube # The chart's name you want displayed in the UI
 apiVersion: v2
-appVersion: "1.0"
+appVersion: "3.2.0.1"
 kubeVersion: "1.20"
 description: A Kubernetes-based MLOps platform based on open standards Kubeflow and MLflow
 type: application
@@ -13,4 +13,4 @@ icon: https://www.dkube.io/img/logo_new.png
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 3.2.0.1
+version: 1.0.6
