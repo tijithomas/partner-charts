@@ -144,15 +144,13 @@ questions:
     description: "Name of persistent volume to be used for storage"
     type: string
     label: Storage PV
-    #show_if: "ha=\"false\"&&optional.storage.type=pv"
-    show_if: "optional.storage.type=pv"
+    show_if: "ha=false&&optional.storage.type=pv"
   - variable: optional.storage.storageClass
     default: ""
     description: "Name of storage class to be used for storage. Make sure dynamic provisioner is running for the storage class name"
     type: string
     label: Storage class
-    #show_if: "ha=\"false\"&&optional.storage.type=sc"
-    show_if: "optional.storage.type=sc"
+    show_if: "ha=false&&optional.storage.type=sc"
   - variable: optional.storage.nfsServer
     default: ""
     description: "NFS server ip to be used for storage"
@@ -194,15 +192,13 @@ questions:
     description: "Ceph data and configuration path for internal ceph. Internal ceph is installed when HA=true and Storage type is not equal to nfs or ceph"
     type: string
     label: Ceph storage path
-    #show_if: "ha=\"true\"&&optional.storage.type!=ceph&&optional.storage.type!=nfs"
-    show_if: "optional.storage.type!=ceph&&optional.storage.type!=nfs"
+    show_if: "ha=true&&optional.storage.type!=ceph&&optional.storage.type!=nfs"
   - variable: optional.storage.cephDisk
     default: ""
     description: "Only for internal ceph from release 2.2.1.12. Disk name for internal ceph storage. It should be a raw formatted disk. E.g: sdb"
     type: string
     label: Ceph Storage Disk
-    #show_if: "ha=\"true\"&&optional.storage.type!=ceph&&optional.storage.type!=nfs"
-    show_if: "optional.storage.type!=ceph&&optional.storage.type!=nfs"
+    show_if: "ha=true&&optional.storage.type!=ceph&&optional.storage.type!=nfs"
 # Loadbalancer
 - variable: optional.loadbalancer.access
   default: "nodeport"
@@ -238,7 +234,7 @@ questions:
   default: "false"
   description: "To enable modelmonitor in dkube. (true / false). Please refer to Model Monitor section of installation guide. https://dkube.io/install/install3_x/Install-Advanced.html#model-monitor"
   type: enum
-  label: Modelmonitor Enabled
+  label: Enable Modelmonitor
   group: "General"
   options:
     - "true"
