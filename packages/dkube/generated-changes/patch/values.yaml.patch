@@ -1,0 +1,11 @@
+--- charts-original/values.yaml
++++ charts/values.yaml
+@@ -64,7 +64,7 @@
+         # Nodename of the storage node
+         # Possible values: AUTO/<nodename>
+         # AUTO - Master node will be chosen for storage if KUBE_PROVIDER=dkube
+-        node: "AUTO"
++        node: ""
+ 
+         # Name of persistent volume
+         persistentVolume: ""

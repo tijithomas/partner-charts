@@ -135,14 +135,12 @@ questions:
     description: "Localpath on the storage node"
     type: string
     label: Dkube storage disk path
-    #show_if: "ha=\"false\"&&optional.storage.type=disk"
     show_if: "optional.storage.type=disk"
   - variable: optional.storage.node
     default: ""
-    description: "Node name for dkube storage"
+    description: "Node name for dkube storage.You can provide hostname of the master node if provider is dkube"
     type: string
     label: Dkube storage disk node
-    #show_if: "ha=\"false\"&&optional.storage.type=disk"
     show_if: "optional.storage.type=disk"
   - variable: optional.storage.persistentVolume
     default: ""
@@ -242,9 +240,12 @@ questions:
 - variable: optional.modelmonitor
   default: "false"
   description: "To enable modelmonitor in dkube. (true / false). Please refer to Model Monitor section of installation guide. https://dkube.io/install/install3_x/Install-Advanced.html#model-monitor"
-  type: boolean      
+  type: enum
   label: Modelmonitor Enabled
   group: "General"
+  options:
+    - "true"
+    - "false"
   show_if: "EULA=yes"
 # DBAAS
 - variable: optional.DBAAS.database
@@ -265,9 +266,12 @@ questions:
 - variable: optional.CICD.enabled
   default: "false"
   description: "To enable tekton cicd with dkube. (true / false). Please refer to CICD section of installation guide. https://dkube.io/install/install3_x/Install-Advanced.html#ci-cd"
-  type: boolean
+  type: enum
   label: CICD Enabled
   group: "CICD"
+  options:
+    - "true"
+    - "false"
   show_if: "EULA=yes"
   show_subquestion_if: true
   subquestions:
