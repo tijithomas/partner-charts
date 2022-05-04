@@ -1,6 +1,6 @@
 --- charts-original/values.yaml
 +++ charts/values.yaml
-@@ -10,7 +10,7 @@
+@@ -10,13 +10,13 @@
  password: ""
  
  # dkube version
@@ -9,6 +9,13 @@
  
  # Choose one of dkube/gke/okd/eks/ntnx/tanzu kube provider
  provider: "dkube"
+ 
+ # For ha deployment, k8s cluster must have min 3 schedulable nodes
+-ha: "false"
++ha: false
+ 
+ # Wipe dkube data during helm operation install/uninstall.
+ # Choose one of yes/no
 @@ -64,7 +64,7 @@
          # Nodename of the storage node
          # Possible values: AUTO/<nodename>

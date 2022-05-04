@@ -49,12 +49,9 @@ questions:
 - variable: ha
   default: "false"
   description: "When HA=true k8s cluster must have min 3 schedulable nodes. Please refer to resilient operation section of the installation guide. https://dkube.io/install/install3_x/Install-Advanced.html#resilient-operation"
-  type: enum
-  label: HA enabled
+  type: boolean
+  label: HA
   required: true
-  options:
-    - "true"
-    - "false"
   group: "General"
   show_if: "EULA=yes"
 - variable: wipedata
@@ -138,7 +135,7 @@ questions:
     show_if: "optional.storage.type=disk"
   - variable: optional.storage.node
     default: ""
-    description: "Node name for dkube storage.You can provide hostname of the master node if provider is dkube"
+    description: "Node name for dkube storage. Provide hostname of the master node if Kube provider is dkube"
     type: string
     label: Dkube storage disk node
     show_if: "optional.storage.type=disk"

@@ -16,7 +16,7 @@ version: "3.2.0.1"
 provider: "dkube"
 
 # For ha deployment, k8s cluster must have min 3 schedulable nodes
-ha: "false"
+ha: false
 
 # Wipe dkube data during helm operation install/uninstall.
 # Choose one of yes/no
