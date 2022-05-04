@@ -1,5 +1,14 @@
 --- charts-original/values.yaml
 +++ charts/values.yaml
+@@ -10,7 +10,7 @@
+ password: ""
+ 
+ # dkube version
+-version: ""
++version: "3.2.0.1"
+ 
+ # Choose one of dkube/gke/okd/eks/ntnx/tanzu kube provider
+ provider: "dkube"
 @@ -64,7 +64,7 @@
          # Nodename of the storage node
          # Possible values: AUTO/<nodename>

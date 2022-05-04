@@ -266,12 +266,9 @@ questions:
 - variable: optional.CICD.enabled
   default: "false"
   description: "To enable tekton cicd with dkube. (true / false). Please refer to CICD section of installation guide. https://dkube.io/install/install3_x/Install-Advanced.html#ci-cd"
-  type: enum
+  type: boolean
   label: CICD Enabled
   group: "CICD"
-  options:
-    - "true"
-    - "false"
   show_if: "EULA=yes"
   show_subquestion_if: true
   subquestions:
