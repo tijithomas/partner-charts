@@ -237,7 +237,7 @@ questions:
     label: Loadbalancer VipPool
     show_if: "EULA=yes"
 # Modelmonitor
-- variable: optional.modelmonitor
+- variable: optional.modelmonitor.enabled
   default: "false"
   description: "To enable modelmonitor in dkube. (true / false). Please refer to Model Monitor section of installation guide. https://dkube.io/install/install3_x/Install-Advanced.html#model-monitor"
   type: enum
