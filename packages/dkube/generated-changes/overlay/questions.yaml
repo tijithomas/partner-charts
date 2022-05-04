@@ -192,13 +192,15 @@ questions:
     description: "Ceph data and configuration path for internal ceph. Internal ceph is installed when HA=true and Storage type is not equal to nfs or ceph"
     type: string
     label: Ceph storage path
-    show_if: "ha=true&&optional.storage.type!=ceph&&optional.storage.type!=nfs"
+    #show_if: "ha=true&&optional.storage.type!=ceph&&optional.storage.type!=nfs"
+    show_if: "ha=true"
   - variable: optional.storage.cephDisk
     default: ""
     description: "Only for internal ceph from release 2.2.1.12. Disk name for internal ceph storage. It should be a raw formatted disk. E.g: sdb"
     type: string
     label: Ceph Storage Disk
-    show_if: "ha=true&&optional.storage.type!=ceph&&optional.storage.type!=nfs"
+    #show_if: "ha=true&&optional.storage.type!=ceph&&optional.storage.type!=nfs"
+    show_if: "ha=true"
 # Loadbalancer
 - variable: optional.loadbalancer.access
   default: "nodeport"
@@ -233,12 +235,9 @@ questions:
 - variable: optional.modelmonitor.enabled
   default: "false"
   description: "To enable modelmonitor in dkube. (true / false). Please refer to Model Monitor section of installation guide. https://dkube.io/install/install3_x/Install-Advanced.html#model-monitor"
-  type: enum
+  type: boolean
   label: Enable Modelmonitor
   group: "General"
-  options:
-    - "true"
-    - "false"
   show_if: "EULA=yes"
 # DBAAS
 - variable: optional.DBAAS.database
