@@ -73,15 +73,11 @@ questions:
   default: "/var/lib/kubelet"
   description: "The kubelet root directory path"
   group: "HPE CSI Driver settings"
-- variable: logLevel
-  label: "Set log level"
-  default: "info"
-  type: enum
-  options:
-    - "info"
-    - "debug"
-    - "trace"
-    - "warn"
-    - "error"
-  description: "Sets the CSI driver and sidecar log level"
+- variable: cspClientTimeout
+  label: "Set cspClientTimeout"
+  type: int
+  default: 60
+  min: 60
+  max: 360
+  description: "CSP client timeout for HPE Alletra 9000, Primera and 3PAR (60-360 sec)"
   group: "HPE CSI Driver settings"
