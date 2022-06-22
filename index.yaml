@@ -969,6 +969,29 @@ entries:
       catalog.cattle.io/release-name: dkube
     apiVersion: v2
     appVersion: 3.2.0.1
+    created: "2022-06-22T16:10:29.978034197+05:30"
+    description: A Kubernetes-based MLOps platform based on open standards Kubeflow
+      and MLflow
+    digest: ac54bc76a73c94d968aa0a824b6fc565b26d61e92adb05b7659f5129e62a29bb
+    home: https://dkube.io
+    icon: https://www.dkube.io/img/logo_new.png
+    keywords:
+    - kubernetes
+    - MLOps
+    - Kubeflow
+    - AI
+    kubeVersion: "1.20"
+    name: dkube-deployer
+    type: application
+    urls:
+    - assets/dkube/dkube-deployer-1.0.60114.tgz
+    version: 1.0.60114
+  - annotations:
+      catalog.cattle.io/certified: partner
+      catalog.cattle.io/display-name: Dkube
+      catalog.cattle.io/release-name: dkube
+    apiVersion: v2
+    appVersion: 3.2.0.1
     created: "2022-05-03T23:36:10.027917743+05:30"
     description: A Kubernetes-based MLOps platform based on open standards Kubeflow
       and MLflow
